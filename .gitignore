@@ -1,0 +1,19 @@
+# === BACKEND (Spring Boot) ===
+target/
+*.log
+*.iml
+.idea/
+*.class
+
+# === FRONTEND (Angular) ===
+node_modules/
+dist/
+.tmp/
+.angular/
+npm-debug.log
+yarn-error.log
+
+# === OS / Editor Files ===
+.DS_Store
+Thumbs.db
+.vscode/
