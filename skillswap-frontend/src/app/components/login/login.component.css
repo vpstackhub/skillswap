@@ -1,0 +1,11 @@
+/* Style the "Register here" link */
+a[routerLink] {
+  color: #007BFF;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a[routerLink]:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
