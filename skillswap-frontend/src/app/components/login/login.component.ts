@@ -26,13 +26,30 @@ export class LoginComponent {
     });
   }
 
-  onSubmit(): void {
+    onSubmit(): void {
     if (this.loginForm.invalid) return;
 
     this.errorMessage = null;
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['/dashboard']),  // 👈 one destination for all
+      next: (user) => {
+        // ✅ user now contains role + email
+        if (!user || !user.role) {
+          this.router.navigate(['/classes']);
+          return;
+        }
+
+        switch (user.role) {
+          case 'TEACHER':
+            this.router.navigate(['/dashboard']);
+            break;
+          case 'ADMIN':
+            this.router.navigate(['/dashboard']);
+            break;
+          default:
+            this.router.navigate(['/classes']);
+        }
+      },
       error: (err) => {
         this.errorMessage = err?.error?.error || 'Login failed';
       }

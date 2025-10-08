@@ -1,2 +1,49 @@
-<!-- src/app/app.component.html -->
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand navbar-light bg-light px-3 shadow-sm">
+  <a class="navbar-brand fw-bold text-primary text-decoration-none" routerLink="/classes">SkillSwap</a>
+  <div class="ms-auto" *ngIf="user as u; else loggedOut">
+    <span class="me-3">Welcome, {{ u.email }} ({{ u.role }})</span>
+    <!-- Show Dashboard everywhere EXCEPT on /dashboard -->
+<a
+  *ngIf="router.url !== '/dashboard'; else backToClasses"
+  routerLink="/dashboard"
+  class="btn btn-outline-primary btn-sm me-2"
+>
+  Dashboard
+</a>
+
+<!-- When on /dashboard, show Back to Classes -->
+<!-- Show Back to Classes only when NOT on dashboard -->
+<ng-template #backToClasses>
+  <a
+    *ngIf="router.url !== '/dashboard'"
+    routerLink="/classes"
+    class="btn btn-outline-secondary btn-sm me-2"
+  >
+    ← Back to Classes
+  </a>
+</ng-template>
+
+<button
+    *ngIf="router.url !== '/dashboard'"
+    class="btn btn-outline-danger btn-sm"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+</div>
+
+  <ng-template #loggedOut>
+  <a
+    *ngIf="router.url !== '/login'"
+    routerLink="/login"
+    class="btn btn-outline-primary btn-sm"
+  >
+    Login
+  </a>
+</ng-template>
+</nav>
+
+<!-- Add spacing to ensure routed pages render clearly -->
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

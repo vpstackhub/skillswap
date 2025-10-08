@@ -9,17 +9,17 @@ export class RoleGuard implements CanActivate {
     const token = localStorage.getItem('token');
     const role  = (localStorage.getItem('role') || '').toUpperCase();
 
-    // Not logged in → go to login
+    // 🚫 Not logged in → back to login
     if (!token || !role) return this.router.parseUrl('/login');
 
-    // If the route doesn't declare roles, allow
+    // ✅ If the route doesn’t declare roles, allow
     const allowed: string[] = route.data?.['roles'] ?? [];
     if (allowed.length === 0) return true;
 
-    // If user has an allowed role, allow
+    // ✅ If user has an allowed role, allow
     if (allowed.includes(role)) return true;
 
-    // Single-dashboard setup: disallowed roles → login
-    return this.router.parseUrl('/login');
+    // 🚫 Logged in, but role mismatch → forbidden page
+    return this.router.parseUrl('/forbidden');
   }
 }

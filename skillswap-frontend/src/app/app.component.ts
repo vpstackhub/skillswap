@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet, RouterLink } from '@angular/router';
+import { AuthService, User } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'skillswap-frontend';
+  user: User | null = null;
+
+  constructor(private authService: AuthService, public router: Router) {
+    this.authService.currentUser$.subscribe(u => this.user = u);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.user = null;
+    this.router.navigate(['/login']);
+  }
 }

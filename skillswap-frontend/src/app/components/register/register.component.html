@@ -2,6 +2,9 @@
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
+  <label>Name:</label><br>
+  <input type="text" formControlName="name"><br><br>
+
   <label>Email:</label><br>
   <input type="email" formControlName="email"><br><br>
 
@@ -18,10 +21,17 @@
   </select><br><br>
 
   <button type="submit">Register</button>
-</form>
 
-<p>
-  Already have an account?
-  <a routerLink="/login">Login here</a>
-</p>
+  <p class="auth-subtext" style="margin-top: 12px;">
+    Already registered?
+    <a routerLink="/login" routerLinkActive="active-link" class="text-blue-600 underline">
+      Login here
+    </a>
+  </p>
+</form>
+<div *ngIf="errorMessage" class="d-flex justify-content-center mt-3">
+  <div class="alert alert-danger w-75 text-center shadow-sm">
+    {{ errorMessage }}
+  </div>
+</div>
 

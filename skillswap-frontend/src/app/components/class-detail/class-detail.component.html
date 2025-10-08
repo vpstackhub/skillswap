@@ -1,0 +1,15 @@
+<div class="container mt-4" *ngIf="classData">
+  <h2>{{ classData.title }}</h2>
+  <p>{{ classData.description }}</p>
+
+  <p><strong>Category:</strong> {{ classData.category }}</p>
+  <p><strong>Teacher:</strong> {{ classData.teacher }}</p>
+  <p><strong>Schedule:</strong> {{ classData.schedule }}</p>
+
+  <a routerLink="/classes" class="btn btn-secondary">⬅ Back to Classes</a>
+</div>
+
+<!-- While waiting -->
+<div *ngIf="!classData" class="alert alert-info mt-4">
+  Loading class details...
+</div>

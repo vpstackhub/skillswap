@@ -1,6 +1,23 @@
-<h2>Welcome to Skillswap Dashboard</h2>
-<p>You are successfully logged in!</p>
+<div class="container mt-4" *ngIf="user; else loadingTpl">
+  <h2>Welcome, {{ user.name }}!</h2>
+  <p>You are successfully logged in as <strong>{{ user.role }}</strong>.</p>
+  <p>Email: {{ user.email }}</p>
 
-<p>
-  <button (click)="logout()">Logout</button>
-</p>
+  <div *ngIf="user.role === 'STUDENT'">
+    <h4>Student Area</h4>
+    <p>Your enrolled classes will appear here soon.</p>
+  </div>
+
+  <div *ngIf="user.role === 'TEACHER'">
+    <h4>Teacher Area</h4>
+    <p>Your teaching schedule will appear here soon.</p>
+  </div>
+
+  <p>
+    <button class="btn btn-outline-danger mt-3" (click)="logout()">Logout</button>
+  </p>
+</div>
+
+<ng-template #loadingTpl>
+  <p class="text-center mt-5">Loading dashboard...</p>
+</ng-template>
