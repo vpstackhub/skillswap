@@ -1,0 +1,29 @@
+# ===============================
+# SkillSwap - Local Example Config
+# Copy this file to:
+#   src/main/resources/application-local.properties
+# and replace placeholder values.
+# ===============================
+
+# --- Server ---
+server.port=8081
+
+# --- H2 Database (file-based, persists locally) ---
+spring.datasource.url=jdbc:h2:file:./data/skillswap-db
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# --- JWT ---
+# Use a 32-byte (256-bit) Base64-encoded secret for development.
+# Example placeholder below — replace with your own locally.
+jwt.secret=YOUR_DEV_JWT_SECRET_BASE64
+
+# --- Logging (optional, helpful in dev) ---
+logging.level.org.springframework.web=DEBUG
+server.error.include-message=always
+server.error.include-binding-errors=always
+spring.mvc.log-request-details=true
