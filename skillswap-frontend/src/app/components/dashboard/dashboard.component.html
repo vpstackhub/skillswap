@@ -3,14 +3,103 @@
   <p>You are successfully logged in as <strong>{{ user.role }}</strong>.</p>
   <p>Email: {{ user.email }}</p>
 
+    <!-- **** STUDENT SECTION CODE *** -->
+
   <div *ngIf="user.role === 'STUDENT'">
     <h4>Student Area</h4>
     <p>Your enrolled classes will appear here soon.</p>
+    
+    <!-- Student Classes with dummy data but in future replacing with Database records -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-primary text-white">
+          My Classes
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let className of sClasses">
+            {{ className }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Schedule with dummy data but in future replacing with Database records -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-success text-white">
+          Schedule
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let item of sSchedule">
+            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Messages with dummy data but in future replacing with Database records -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-warning text-dark">
+          Messages
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let msg of sMessages">
+            <strong>{{ msg.from }}:</strong> {{ msg.content }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <div *ngIf="user.role === 'TEACHER'">
+  <!-- **** TEACHER SECTION CODE *** -->
+
+  <div *ngIf="user.role === 'TEACHER' ">
     <h4>Teacher Area</h4>
     <p>Your teaching schedule will appear here soon.</p>
+
+    <!-- Teacher Classes with dummy data but in future replacing with Database records -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-primary text-white">
+          My Classes
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let courseName of tCourses">
+            {{ courseName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Schedule with dummy data but in future replacing with Database records -->
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-success text-white">
+          Schedule
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let item of tSchedule">
+            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Messages with dummy data but in future replacing with Database records -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header bg-warning text-dark">
+          Messages
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let msg of tMessages">
+            <strong>{{ msg.from }}:</strong> {{ msg.content }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <p>
