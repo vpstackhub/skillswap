@@ -12,20 +12,29 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.io.IOException;
+import org.springframework.lang.NonNull;
+
 
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtUtil jwtUtil;  // ✅ Injected instance
+    private JwtUtil jwtUtil;  // Injected instance
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
+             @NonNull HttpServletRequest request,
+             @NonNull HttpServletResponse response,
+             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
+
+        // Skip CORS preflight requests
+    if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+        response.setStatus(HttpServletResponse.SC_OK);
+        return;
+    }
+
 
         // 1) Skip public endpoints
         String path = request.getServletPath();
