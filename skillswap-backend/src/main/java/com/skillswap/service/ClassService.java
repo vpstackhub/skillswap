@@ -31,4 +31,17 @@ public class ClassService {
     public void deleteClass(Long id) {
         classRepository.deleteById(id);
     }
+
+    public List<ClassEntity> getClassesForStudent(Long studentId) {
+    // Temporary mock: return all classes
+    return classRepository.findAll();
+}
+
+    public List<ClassEntity> getClassesForTeacher(String teacherName) {
+        // Temporary mock: filter by teacher field
+        return classRepository.findAll()
+                .stream()
+                .filter(c -> c.getTeacher() != null && c.getTeacher().equalsIgnoreCase(teacherName))
+                .toList();
+    }
 }

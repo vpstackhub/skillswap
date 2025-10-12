@@ -12,8 +12,7 @@ public class SkillswapBackendApplication {
 		SpringApplication.run(SkillswapBackendApplication.class, args);
 
 		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
-System.out.println("Hashed password for admin123: " + encoder.encode("admin123"));
-
+		System.out.println("Hashed password for teachpass: " + new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder(10).encode("teachpass"));
 	}
 
 }
