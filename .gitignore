@@ -1,28 +1,43 @@
-# === BACKEND (Spring Boot) ===
-target/
-*.log
-*.iml
+###############################
+# SKILLSWAP ROOT GITIGNORE
+# Maintained by Valerio Porcelli – created 2025-10-12
+# Covers backend + frontend in monorepo structure
+###############################
+
+# ===== Backend (Spring Boot) =====
+skillswap-backend/target/
+skillswap-backend/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# 🔒 Local configs
+skillswap-backend/src/main/resources/application-local.properties
+skillswap-backend/*.log
+
+# ===== Frontend (Angular) =====
+skillswap-frontend/node_modules/
+skillswap-frontend/dist/
+skillswap-frontend/.angular/
+skillswap-frontend/.env
+skillswap-frontend/.DS_Store
+
+# ===== IDEs & Editors =====
 .idea/
-*.class
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.sts4-cache/
 
-# === FRONTEND (Angular) ===
-node_modules/
-dist/
-.tmp/
-.angular/
-npm-debug.log
-yarn-error.log
-
-# === OS / Editor Files ===
+# ===== OS-specific =====
 .DS_Store
 Thumbs.db
-.vscode/
 
-# H2 database files
-skillswap-backend/data/
-
-# Spring Boot secret configs
-skillswap-backend/src/main/resources/application-local.properties
-skillswap-backend/src/main/resources/application-prod.properties
-.env
-
+# ===== Build artifacts =====
+build/
+nbbuild/
+nbdist/
+dist/

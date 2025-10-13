@@ -36,4 +36,16 @@ public class ClassController {
     public void deleteClass(@PathVariable Long id) {
         classService.deleteClass(id);
     }
+
+    // Get classes for a specific student (temporary: returns all)
+    @GetMapping("/student/{id}")
+    public List<ClassEntity> getClassesForStudent(@PathVariable Long id) {
+        return classService.getClassesForStudent(id);
+    }
+
+    // Get classes taught by a specific teacher
+    @GetMapping("/teacher/{name}")
+    public List<ClassEntity> getClassesForTeacher(@PathVariable String name) {
+        return classService.getClassesForTeacher(name);
+    }
 }
