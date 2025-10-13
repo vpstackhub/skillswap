@@ -1,112 +1,109 @@
 <div class="container mt-4" *ngIf="user; else loadingTpl">
-  <h2>Welcome, {{ user.name }}!</h2>
-  <p>You are successfully logged in as <strong>{{ user.role }}</strong>.</p>
-  <p>Email: {{ user.email }}</p>
-
-    <!-- **** STUDENT SECTION CODE *** -->
-
-  <div *ngIf="user.role === 'STUDENT'">
-    <h4>Student Area</h4>
-    <p>Your enrolled classes will appear here soon.</p>
-    
-    <!-- Student Classes with dummy data but in future replacing with Database records -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-primary text-white">
-          My Classes
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let className of sClasses">
-            {{ className }}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Schedule with dummy data but in future replacing with Database records -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-success text-white">
-          Schedule
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let item of sSchedule">
-            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Messages with dummy data but in future replacing with Database records -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-warning text-dark">
-          Messages
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let msg of sMessages">
-            <strong>{{ msg.from }}:</strong> {{ msg.content }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- **** TEACHER SECTION CODE *** -->
-
-  <div *ngIf="user.role === 'TEACHER' ">
-    <h4>Teacher Area</h4>
-    <p>Your teaching schedule will appear here soon.</p>
-
-    <!-- Teacher Classes with dummy data but in future replacing with Database records -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-primary text-white">
-          My Classes
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let courseName of tCourses">
-            {{ courseName }}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Schedule with dummy data but in future replacing with Database records -->
-
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-success text-white">
-          Schedule
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let item of tSchedule">
-            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Messages with dummy data but in future replacing with Database records -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-header bg-warning text-dark">
-          Messages
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let msg of tMessages">
-            <strong>{{ msg.from }}:</strong> {{ msg.content }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <p>
-    <button class="btn btn-outline-danger mt-3" (click)="logout()">Logout</button>
+  <h2 class="fw-bold text-center mb-4">Welcome, {{ user.name }}!</h2>
+  <p class="text-center text-muted">
+    You are logged in as <strong>{{ user.role }}</strong><br />
+    <small>Email: {{ user.email }}</small>
   </p>
+
+  <!-- ================= STUDENT SECTION ================= -->
+  <div *ngIf="user.role === 'STUDENT'" class="mt-5">
+    <h4 class="mb-3 text-primary fw-semibold">
+      <i class="bi bi-mortarboard-fill me-2"></i> Student Dashboard
+    </h4>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- My Classes -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-primary text-white fw-semibold">My Classes</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let className of sClasses">
+              {{ className }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Schedule -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-success text-white fw-semibold">Schedule</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let item of sSchedule">
+              <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-warning text-dark fw-semibold">Messages</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let msg of sMessages">
+              <strong>{{ msg.from }}:</strong> {{ msg.content }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TEACHER SECTION ================= -->
+  <div *ngIf="user.role === 'TEACHER'" class="mt-5">
+    <h4 class="mb-3 text-primary fw-semibold">
+      <i class="bi bi-person-badge-fill me-2"></i> Teacher Dashboard
+    </h4>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- My Classes -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-primary text-white fw-semibold">My Classes</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let courseName of tCourses">
+              {{ courseName }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Schedule -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-success text-white fw-semibold">Schedule</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let item of tSchedule">
+              <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header bg-warning text-dark fw-semibold">Messages</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let msg of tMessages">
+              <strong>{{ msg.from }}:</strong> {{ msg.content }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout -->
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-danger px-4" (click)="logout()">
+      Logout
+    </button>
+  </div>
 </div>
 
+<!-- Loading template -->
 <ng-template #loadingTpl>
-  <p class="text-center mt-5">Loading dashboard...</p>
+  <p class="text-center mt-5 text-muted">Loading dashboard...</p>
 </ng-template>

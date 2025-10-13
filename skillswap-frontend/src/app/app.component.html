@@ -1,6 +1,19 @@
 <nav class="navbar navbar-expand navbar-light bg-light px-3 shadow-sm">
-  <a class="navbar-brand fw-bold text-primary text-decoration-none" routerLink="/classes">SkillSwap</a>
-  <div class="ms-auto" *ngIf="user as u; else loggedOut">
+<a
+  class="navbar-brand fw-bold text-primary text-decoration-none"
+  *ngIf="user?.role === 'TEACHER'; else normalLink"
+  href="javascript:void(0)"
+>
+  SkillSwap
+</a>
+
+<ng-template #normalLink>
+  <a class="navbar-brand fw-bold text-primary text-decoration-none" routerLink="/classes">
+    SkillSwap
+  </a>
+</ng-template>
+
+<div class="ms-auto" *ngIf="user as u; else loggedOut">
     <span class="me-3">Welcome, {{ u.email }} ({{ u.role }})</span>
     <!-- Show Dashboard everywhere EXCEPT on /dashboard -->
 <a
