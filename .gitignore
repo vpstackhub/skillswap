@@ -41,3 +41,8 @@ build/
 nbbuild/
 nbdist/
 dist/
+
+# Ignore local H2 database files
+skillswap-backend/data/*.mv.db
+skillswap-backend/data/*.trace.db
+
