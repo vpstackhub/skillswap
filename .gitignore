@@ -46,3 +46,22 @@ dist/
 skillswap-backend/data/*.mv.db
 skillswap-backend/data/*.trace.db
 
+
+# Backend logs folder
+skillswap-backend/logs/
+
+# Backup or temp files
+*.tmp
+*.bak
+*.swp
+
+# Frontend environment variants (if you ever add them)
+skillswap-frontend/src/environments/environment.local.ts
+skillswap-frontend/src/environments/environment.dev.ts
+skillswap-frontend/src/environments/environment.prod.ts
+
+# Frontend npm/yarn caches
+skillswap-frontend/.npm/
+skillswap-frontend/.cache/
+skillswap-frontend/.turbo/
+
