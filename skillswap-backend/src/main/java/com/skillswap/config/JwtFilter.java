@@ -70,7 +70,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // 4) Attach authentication with authorities
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             var authorities = (role != null && !role.isBlank())
-                    ? java.util.List.of(new SimpleGrantedAuthority("ROLE_" + role))
+                    ? java.util.List.of(new SimpleGrantedAuthority(role))
                     : java.util.List.<SimpleGrantedAuthority>of();
                     
                     System.out.println("🧩 JWT email=" + email + " role=" + role);

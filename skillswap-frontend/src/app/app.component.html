@@ -60,3 +60,8 @@
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>
+
+<div *ngIf="bookingSuccess" class="alert alert-success text-center mt-3" role="alert">
+  Booking confirmed successfully!
+</div>
+

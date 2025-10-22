@@ -33,7 +33,7 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (user) => {
-        // ✅ user now contains role + email
+        //  user now contains role + email
         if (!user || !user.role) {
           this.router.navigate(['/classes']);
           return;

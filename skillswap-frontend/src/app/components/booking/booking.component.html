@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h3 class="text-primary mb-3">Book a Session</h3>
+
+  <form (ngSubmit)="submit()" #f="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Topic</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        [(ngModel)]="bookingData.topic"
+        name="topic"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date & Time</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        required
+        [(ngModel)]="bookingData.dateTime"
+        name="dateTime"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Teacher ID</label>
+      <input
+        type="number"
+        class="form-control"
+        required
+        [(ngModel)]="bookingData.teacher.id"
+        name="teacherId"
+      />
+    </div>
+
+    <button class="btn btn-primary" [disabled]="submitting || f.invalid">
+      {{ submitting ? 'Submitting...' : 'Create Booking' }}
+    </button>
+  </form>
+
+  <div *ngIf="showToast" class="alert alert-success mt-3">Booking saved!</div>
+</div>
+
+<div *ngIf="showToast" class="alert alert-success text-center mt-3" role="alert">
+  Booking created successfully!
+</div>
+
+<div *ngIf="lastBookingSummary" class="card mt-3 shadow-sm">
+  <div class="card-body">
+    <h6 class="fw-bold text-success mb-2">Booking Summary</h6>
+    <p class="mb-1"><strong>Topic:</strong> {{ lastBookingSummary.topic }}</p>
+    <p class="mb-1"><strong>Date & Time:</strong> {{ lastBookingSummary.dateTime | date:'medium' }}</p>
+    <p class="mb-0"><strong>Teacher:</strong> {{ lastBookingSummary.teacherName }}</p>
+  </div>
+</div>
+
+

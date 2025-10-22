@@ -18,25 +18,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .cors(cors -> {})   // 👈 allow CORS using your WebConfig
+            .cors(cors -> {})   // Enable CORS
             .csrf(csrf -> csrf.disable())
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .authorizeHttpRequests(auth -> auth
+                // Public endpoints
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/api/users/login", "/api/users/register").permitAll()
 
+                // ✅ Allow authenticated users to call /api/users/me
+                .requestMatchers("/api/users/me").hasAnyRole("STUDENT", "TEACHER", "ADMIN")
+
                 // 🔐 Role-gated routes
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/teacher/**").hasRole("TEACHER")
+                .requestMatchers("/api/teacher/**").hasAnyRole("TEACHER", "STUDENT")
                 .requestMatchers("/api/student/**").hasRole("STUDENT")
 
-                // everything else needs to be authenticated
+                // Everything else requires authentication
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

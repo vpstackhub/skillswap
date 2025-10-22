@@ -1,0 +1,51 @@
+<div class="mt-5">
+  <h4 class="mb-3 text-primary fw-semibold">
+    <i class="bi bi-person-badge-fill me-2"></i> Teacher Dashboard
+  </h4>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- My Classes -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-primary text-white fw-semibold">My Classes</div>
+
+        <ul class="list-group list-group-flush" *ngIf="tCourses.length > 0; else noCourses">
+          <li class="list-group-item" *ngFor="let course of tCourses">
+            {{ course }}
+          </li>
+        </ul>
+        <ng-template #noCourses>
+          <p class="text-muted text-center mt-3 mb-3">No courses assigned yet.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-success text-white fw-semibold">Schedule</div>
+
+        <ul class="list-group list-group-flush" *ngIf="tSchedule.length > 0; else noSchedule">
+          <li class="list-group-item" *ngFor="let item of tSchedule">
+            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+          </li>
+        </ul>
+        <ng-template #noSchedule>
+          <p class="text-muted text-center mt-3 mb-3">No classes scheduled.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-warning text-dark fw-semibold">Messages</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let msg of tMessages">
+            <strong>{{ msg.from }}:</strong> {{ msg.content }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

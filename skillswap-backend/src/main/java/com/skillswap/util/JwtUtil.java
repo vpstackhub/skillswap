@@ -40,7 +40,7 @@ public class JwtUtil {
 
         return Jwts.builder()
                 .setSubject(email)
-                .claim("role", role)
+                .claim("role", "ROLE_" + role) 
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS256)

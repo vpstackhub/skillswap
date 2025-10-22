@@ -7,6 +7,8 @@ import { RoleGuard } from './guards/role.guard';
 import { ClassListComponent } from './components/class-list/class-list.component';
 import { ClassDetailComponent } from './components/class-detail/class-detail.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { BookingComponent } from './components/booking/booking.component';
+
 
 
 export const routes: Routes = [
@@ -33,7 +35,15 @@ export const routes: Routes = [
     data: { roles: ['STUDENT', 'TEACHER'] }
   },
 
-  { path: 'forbidden', component: ForbiddenComponent },
+  {
+  path: 'booking',
+  component: BookingComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { roles: ['STUDENT'] }
+},
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+{ path: 'forbidden', component: ForbiddenComponent },
+
+{ path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
+

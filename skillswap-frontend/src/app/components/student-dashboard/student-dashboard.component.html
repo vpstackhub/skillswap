@@ -1,0 +1,58 @@
+<div class="mt-5">
+  <h4 class="mb-3 text-primary fw-semibold">
+    <i class="bi bi-mortarboard-fill me-2"></i> Student Dashboard
+  </h4>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" routerLink="/booking">
+      <i class="bi bi-calendar-plus me-1"></i> Book a Session
+    </button>
+  </div>
+
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- My Classes -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-primary text-white fw-semibold">My Classes</div>
+
+        <ul class="list-group list-group-flush" *ngIf="sClasses.length > 0; else noClasses">
+          <li class="list-group-item" *ngFor="let className of sClasses">
+            {{ className }}
+          </li>
+        </ul>
+        <ng-template #noClasses>
+          <p class="text-muted text-center mt-3 mb-3">No classes booked yet.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-success text-white fw-semibold">Schedule</div>
+
+        <ul class="list-group list-group-flush" *ngIf="sSchedule.length > 0; else noSchedule">
+          <li class="list-group-item" *ngFor="let item of sSchedule">
+            <strong>{{ item.day }}:</strong> {{ item.subject }} at {{ item.time }}
+          </li>
+        </ul>
+        <ng-template #noSchedule>
+          <p class="text-muted text-center mt-3 mb-3">No sessions scheduled.</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="col">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-header bg-warning text-dark fw-semibold">Messages</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let msg of sMessages">
+            <strong>{{ msg.from }}:</strong> {{ msg.content }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,8 @@ import { AuthService, User } from './services/auth.service';
 })
 export class AppComponent {
   user: User | null = null;
-
+  bookingSuccess: boolean = false;
+  
   constructor(private authService: AuthService, public router: Router) {
     this.authService.currentUser$.subscribe(u => this.user = u);
   }

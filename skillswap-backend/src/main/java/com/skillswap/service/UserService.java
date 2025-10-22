@@ -31,7 +31,7 @@ public class UserService {
         return repo.existsByEmail(email);
     }
 
-    // ✅ Add this method to support login lookups
+    // method to support login lookups
     public Optional<User> findByEmail(String email) {
         return repo.findByEmail(email);
     }
