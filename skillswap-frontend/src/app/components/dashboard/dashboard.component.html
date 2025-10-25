@@ -1,5 +1,8 @@
 <div class="container mt-4" *ngIf="user; else loadingTpl">
   <h2 class="fw-bold text-center mb-4">Welcome, {{ user.name }}!</h2>
+  <a class="btn btn-secondary mb-3" routerLink="/classes">
+    ← Back to classes
+  </a>
   <p class="text-center text-muted">
     You are logged in as <strong>{{ user.role }}</strong><br />
     <small>Email: {{ user.email }}</small>
@@ -17,3 +20,5 @@
 <ng-template #loadingTpl>
   <p class="text-center mt-5 text-muted">Loading dashboard...</p>
 </ng-template>
+
+

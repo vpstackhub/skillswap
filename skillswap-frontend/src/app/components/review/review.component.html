@@ -1,0 +1,75 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Leave a Review</h5>
+
+      <!-- ⭐ Average Rating Badge -->
+      <span *ngIf="averageRating !== null" class="badge bg-warning text-dark fs-6">
+        ⭐ {{ averageRating.toFixed(1) }} / 5
+      </span>
+    </div>
+
+    <div class="card-body">
+      <!-- Auto-filled Class Name -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Class</label>
+        <input
+          type="text"
+          [(ngModel)]="className"
+          name="className"
+          class="form-control"
+          readonly />
+      </div>
+
+      <!-- Teacher -->
+      <div class="mb-3">
+      <label class="form-label fw-semibold">Teacher</label>
+      <select [(ngModel)]="teacherId" class="form-select">
+        <option value="" disabled selected>Select a teacher</option>
+        <option *ngFor="let t of teachers" [value]="t.id">
+          {{ t.name }} ({{ t.email }})
+        </option>
+      </select>
+    </div>
+
+      <!-- Star Rating -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Rating</label>
+        <div>
+          <span
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            (click)="rating = star"
+            [class.text-warning]="star <= rating"
+            style="cursor:pointer;font-size:1.8rem;">
+            ★
+          </span>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Comment</label>
+        <textarea
+          [(ngModel)]="comment"
+          class="form-control"
+          rows="3"
+          placeholder="Write your thoughts about the class..."></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button
+        class="btn btn-primary w-100"
+        [disabled]="isSubmitting"
+        (click)="submitReview()">
+        {{ isSubmitting ? 'Submitting...' : 'Submit Review' }}
+      </button>
+
+      <!-- Success Toast -->
+      <div
+        *ngIf="showToast"
+        class="alert alert-success mt-3 text-center fw-semibold shadow-sm">
+        ✅ Review submitted successfully!
+      </div>
+    </div>
+  </div>
+</div>

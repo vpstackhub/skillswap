@@ -8,6 +8,10 @@ import { ClassListComponent } from './components/class-list/class-list.component
 import { ClassDetailComponent } from './components/class-detail/class-detail.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { ReviewComponent } from './components/review/review.component';
+import { TeacherAdminComponent } from './components/teacher-admin/teacher-admin.component';
+import { ReviewAdminComponent } from './components/review-admin/review-admin.component';
+
 
 
 
@@ -44,6 +48,10 @@ export const routes: Routes = [
 
 { path: 'forbidden', component: ForbiddenComponent },
 
-{ path: '', redirectTo: 'login', pathMatch: 'full' }
+{ path: '', redirectTo: 'login', pathMatch: 'full' },
+{ path: 'review', component: ReviewComponent },
+
+{ path: 'admin/teachers', component: TeacherAdminComponent },
+{ path: 'admin/reviews', component: ReviewAdminComponent },
 ];
 

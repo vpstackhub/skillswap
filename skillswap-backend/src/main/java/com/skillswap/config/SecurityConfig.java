@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/teacher/**").hasAnyRole("TEACHER", "STUDENT")
                 .requestMatchers("/api/student/**").hasRole("STUDENT")
+                .requestMatchers("/api/reviews/**").hasAnyRole("STUDENT", "TEACHER", "ADMIN")
 
                 // Everything else requires authentication
                 .anyRequest().authenticated()

@@ -107,4 +107,9 @@ export class AuthService {
       });
     }
   }
+  /** Check if current user has a specific role */
+  hasRole(role: UserRole): boolean {
+    const currentRole = this.role; // uses your existing getter
+    return currentRole === role;
+  }
 }

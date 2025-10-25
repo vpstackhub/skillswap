@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h3>📝 Reviews Overview</h3>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Class</th>
+        <th>Session Date</th>
+        <th>Rating</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reviews">
+        <td>{{ r.teacherName }}</td>
+        <td>{{ r.className }}</td>
+        <td>{{ r.sessionDate | date:'short' }}</td>
+        <td>⭐ {{ r.rating }}</td>
+        <td>{{ r.comment }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
